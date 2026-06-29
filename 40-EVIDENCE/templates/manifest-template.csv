@@ -1,0 +1,2 @@
+evidence_id,timestamp_utc,collector,type,filename,sha256,linked_finding_id,notes
+EV-[ENG-ID]-001,YYYY-MM-DD HH:MM:SS UTC,[Operator Name],[screenshot|pcap|text|video|file],[filename.ext],[sha256hash],[FND-ID or N/A],[optional notes]
