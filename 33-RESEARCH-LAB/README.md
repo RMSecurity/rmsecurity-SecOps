@@ -1,19 +1,33 @@
-# 33-RESEARCH-LAB
+﻿# 33-RESEARCH-LAB — Research Lab
 ### rmsecurity | CCOS
-
-> This domain is planned. Implementation begins when Phase 1 (00-PLATFORM) is complete.
-> See the root `README.md` for the full CCOS architecture and implementation phases.
 
 ## Purpose
 
-_To be defined during domain implementation._
+Structured space for evaluating new tools, developing proof-of-concept
+exploits, and documenting research findings. Research here feeds into
+playbooks and the knowledge base.
 
-## Status
+## Directory Structure
 
-- [x] Directory created
-- [x] README placeholder in place
-- [ ] Full implementation pending
+```
+33-RESEARCH-LAB/
+├── README.md
+└── templates/
+    └── research-note-template.md   <- standardized note for tool/technique research
+```
 
-## Related Domains
+## Research Categories
 
-See `README.md` in the repository root for the complete dependency map.
+| Category | Description |
+|---------|-------------|
+| Tool evaluation | Testing new offensive/defensive tools for inclusion in toolkit |
+| CVE research | Reproducing publicly disclosed vulnerabilities for engagements |
+| Technique development | Building custom scripts or adapting public PoCs |
+| Detection bypass | Researching AV/EDR evasion for red team engagements |
+
+## Lab Rules
+
+- Research happens in isolated VMs — never on the host machine
+- PoC code goes in `33-RESEARCH-LAB/` only — never in playbooks
+- If a PoC is ready for use in engagements, it moves to `22-PENTESTING/tools/`
+- Malware samples: hash only in the repo; binaries in encrypted store

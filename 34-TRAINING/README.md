@@ -1,19 +1,37 @@
-# 34-TRAINING
+﻿# 34-TRAINING — Training & Certifications
 ### rmsecurity | CCOS
-
-> This domain is planned. Implementation begins when Phase 1 (00-PLATFORM) is complete.
-> See the root `README.md` for the full CCOS architecture and implementation phases.
 
 ## Purpose
 
-_To be defined during domain implementation._
+Tracks certification goals, study resources, and skills development for
+rmsecurity operators. Staying current in offensive security requires
+continuous learning.
 
-## Status
+## Directory Structure
 
-- [x] Directory created
-- [x] README placeholder in place
-- [ ] Full implementation pending
+```
+34-TRAINING/
+├── README.md
+├── paths/
+│   └── certification-roadmap.md    <- prioritized cert path with resources
+└── resources/
+    └── study-resources.md          <- curated links and materials
+```
 
-## Related Domains
+## Current Certification Priority
 
-See `README.md` in the repository root for the complete dependency map.
+1. **OSCP** (OffSec Certified Professional) — foundational pentesting credential
+2. **CRTP** (Certified Red Team Professional) — AD-focused
+3. **eWPT / BSCP** (web app pentesting)
+4. **CCSP / AWS Security Specialty** (cloud security)
+
+## Lab Environments
+
+| Platform | Cost | Best For |
+|---------|------|---------|
+| Hack The Box | ~$14/mo | Ongoing practice, AD labs |
+| TryHackMe | ~$14/mo | Learning paths, beginner-friendly |
+| OffSec PG Practice | Included in OSCP | OSCP prep |
+| GOAD (GitHub) | Free | Active Directory lab (self-hosted) |
+| CloudGoat | Free | AWS security practice |
+| DVWA | Free | Web app practice (self-hosted) |

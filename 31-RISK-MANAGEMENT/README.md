@@ -1,19 +1,34 @@
-# 31-RISK-MANAGEMENT
+﻿# 31-RISK-MANAGEMENT — Risk Management
 ### rmsecurity | CCOS
-
-> This domain is planned. Implementation begins when Phase 1 (00-PLATFORM) is complete.
-> See the root `README.md` for the full CCOS architecture and implementation phases.
 
 ## Purpose
 
-_To be defined during domain implementation._
+Methodology and templates for translating technical findings into business
+risk language, and for helping clients build and maintain a risk register.
+Risk management is the bridge between what we find and what the client prioritizes.
 
-## Status
+## Directory Structure
 
-- [x] Directory created
-- [x] README placeholder in place
-- [ ] Full implementation pending
+```
+31-RISK-MANAGEMENT/
+├── README.md
+├── methodology/
+│   └── risk-scoring.md         <- how rmsecurity calculates and communicates risk
+└── templates/
+    └── risk-register-template.md  <- client-facing risk register structure
+```
+
+## Risk vs Vulnerability
+
+| Concept | Definition | Owner |
+|---------|-----------|-------|
+| Vulnerability | Technical weakness (CVSS score) | IT / Security |
+| Risk | Likelihood × Impact to business | CISO / Leadership |
+| Finding | rmsecurity confirmed vulnerability with evidence | rmsecurity |
+| Risk Register item | Finding translated to business risk with residual risk tracking | Client |
 
 ## Related Domains
 
-See `README.md` in the repository root for the complete dependency map.
+- `01-STANDARDS/frameworks/risk-classification.md` — severity framework
+- `43-REMEDIATION/` — risk register drives remediation prioritization
+- `42-EXECUTIVE-REPORTING/` — executive summary presents top risks
