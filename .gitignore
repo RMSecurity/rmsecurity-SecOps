@@ -1,0 +1,136 @@
+# =============================================================================
+# CCOS — Global .gitignore
+# rmsecurity | Last updated: 2026
+# =============================================================================
+# This file blocks secrets, client data, and OS noise from ever entering
+# the repository. Every line here represents a category of data that must
+# never be committed.
+# =============================================================================
+
+# --- Secrets and credentials -------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+*_rsa
+*credentials*
+*secret*
+*password*
+*passwd*
+*.token
+auth.json
+secrets.json
+secrets.yaml
+secrets.yml
+
+# --- Client data (belongs in encrypted store, never here) --------------------
+/client-data/
+/engagements/
+/evidence/
+*.pcap
+*.pcapng
+*.cap
+*.log
+*.evtx
+*.vmem
+*.raw
+*.dd
+*.img
+*.E01
+*.ad1
+
+# --- Scan and tool output (sensitive) ----------------------------------------
+*.nessus
+*.xml.bak
+nmap-*.txt
+masscan-*.txt
+*.burp
+*.har
+
+# --- Report drafts (until formally archived) ---------------------------------
+*-DRAFT-*
+*-WIP-*
+*-draft.*
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+dist/
+build/
+*.egg-info/
+.eggs/
+pip-log.txt
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --- Node (for future portal/dashboard work) ---------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+.npm
+.yarn-integrity
+
+# --- Docker ------------------------------------------------------------------
+.docker/
+docker-compose.override.yml
+
+# --- OS and editor noise -----------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+*~
+.directory
+
+# --- Temporary files ---------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.orig
+/tmp/
+/scratch/
+
+# --- Compiled output ---------------------------------------------------------
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.jar
+
+# --- Archive files (use the evidence store) ----------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+!docker/**/*.tar.gz

@@ -1,0 +1,65 @@
+name: Docker Image Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "00-PLATFORM/docker/**"
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ghcr.io/rmsecurity
+
+jobs:
+  build-pentest-base:
+    name: Build pentest base image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push pentest-base
+        uses: docker/build-push-action@v5
+        with:
+          context: 00-PLATFORM/docker/pentest-base
+          push: true
+          tags: |
+            ${{ env.IMAGE_PREFIX }}/pentest-base:latest
+            ${{ env.IMAGE_PREFIX }}/pentest-base:${{ github.sha }}
+
+  build-reporting:
+    name: Build reporting image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push reporting
+        uses: docker/build-push-action@v5
+        with:
+          context: 00-PLATFORM/docker/reporting
+          push: true
+          tags: |
+            ${{ env.IMAGE_PREFIX }}/reporting:latest
+            ${{ env.IMAGE_PREFIX }}/reporting:${{ github.sha }}

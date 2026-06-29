@@ -1,0 +1,28 @@
+# =============================================================================
+# CCOS — CODEOWNERS
+# rmsecurity
+# =============================================================================
+# Defines who must review changes to critical paths.
+# GitHub enforces this on protected branches.
+# Update with GitHub usernames as the team grows.
+# =============================================================================
+
+# Default owner for everything not matched below
+*                                   @rmsecurity-admin
+
+# Platform and automation — highest scrutiny
+/00-PLATFORM/                       @rmsecurity-admin
+/03-AUTOMATION/                     @rmsecurity-admin
+/.github/                           @rmsecurity-admin
+/.gitignore                         @rmsecurity-admin
+/.pre-commit-config.yaml            @rmsecurity-admin
+
+# Standards and policy — require explicit approval
+/01-STANDARDS/                      @rmsecurity-admin
+/02-QUALITY/                        @rmsecurity-admin
+
+# Service catalog — changes affect pricing and scope
+/14-SERVICE-CATALOG/                @rmsecurity-admin
+
+# Legal and corporate — sensitive
+/10-CORPORATE/                      @rmsecurity-admin

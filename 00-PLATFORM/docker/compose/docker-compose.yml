@@ -1,0 +1,46 @@
+version: "3.9"
+
+# =============================================================================
+# rmsecurity — CCOS Docker Compose
+# Orchestrates the operational tool stack for a local engagement environment.
+# Usage: docker compose up -d
+# =============================================================================
+
+services:
+
+  pentest:
+    image: ghcr.io/rmsecurity/pentest-base:latest
+    container_name: rmsec-pentest
+    volumes:
+      - ../../../:/workspace/ccos:ro          # CCOS repo read-only
+      - ${ENGAGEMENT_STORE:-~/rmsecurity-engagements}:/workspace/engagements
+    network_mode: host                         # Required for most pentest tooling
+    stdin_open: true
+    tty: true
+    env_file:
+      - ../../config/.env
+
+  reporting:
+    image: ghcr.io/rmsecurity/reporting:latest
+    container_name: rmsec-reporting
+    volumes:
+      - ../../../41-REPORTING/templates:/reports/templates:ro
+      - ../../../42-EXECUTIVE-REPORTING/templates:/reports/exec-templates:ro
+      - ${ENGAGEMENT_STORE:-~/rmsecurity-engagements}:/reports/engagements
+    ports:
+      - "8080:8080"                            # Report preview server
+
+  # Threat intelligence — MISP instance (optional, resource intensive)
+  # misp:
+  #   image: ghcr.io/misp/misp:latest
+  #   container_name: rmsec-misp
+  #   ports:
+  #     - "443:443"
+  #   volumes:
+  #     - misp-data:/var/www/MISP
+  #   env_file:
+  #     - ../../config/.env
+
+volumes:
+  misp-data:
+    driver: local
