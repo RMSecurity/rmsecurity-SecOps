@@ -1,19 +1,33 @@
-# 23-CLOUD-SECURITY
+﻿# 23-CLOUD-SECURITY — Cloud Security Assessment
 ### rmsecurity | CCOS
-
-> This domain is planned. Implementation begins when Phase 1 (00-PLATFORM) is complete.
-> See the root `README.md` for the full CCOS architecture and implementation phases.
 
 ## Purpose
 
-_To be defined during domain implementation._
+Playbooks for assessing cloud environments: AWS, Azure, and Microsoft 365.
+Cloud assessments focus on identity and access misconfigurations, exposed storage,
+overprivileged roles, and insecure workloads.
 
-## Status
+## Directory Structure
 
-- [x] Directory created
-- [x] README placeholder in place
-- [ ] Full implementation pending
+```
+23-CLOUD-SECURITY/
+├── README.md
+├── playbooks/
+│   ├── aws-assessment.md          <- AWS IAM, S3, EC2, Lambda assessment
+│   └── azure-m365-assessment.md   <- Azure AD, M365, storage, workloads
+└── tools/
+    └── cloud-toolkit.md           <- tool reference (ScoutSuite, Prowler, etc.)
+```
+
+## Engagement Types
+
+| Type | Scope | Credentials |
+|------|-------|-------------|
+| External cloud attack surface | Public buckets, APIs, exposed services | None |
+| IAM / posture assessment | IAM policies, roles, permissions | Read-only credentials provided |
+| Full cloud pentest | Exploit misconfigs, escalate, pivot | Start with limited user |
 
 ## Related Domains
 
-See `README.md` in the repository root for the complete dependency map.
+- `22-PENTESTING/` — cloud pentest overlaps with network pentest
+- `14-SERVICE-CATALOG/services/assessment-cloud.md` — service definition
