@@ -1,19 +1,41 @@
-# 51-CONTINUOUS-IMPROV
-### rmsecurity | CCOS
+﻿# 51-CONTINUOUS-IMPROV — Continuous Improvement
+### rmsecurity | CCOS Layer 5: Continuous Improvement
 
-> This domain is planned. Implementation begins when Phase 1 (00-PLATFORM) is complete.
-> See the root `README.md` for the full CCOS architecture and implementation phases.
+Processes for keeping the CCOS current and improving rmsecurity methodology,
+tooling, and delivery quality over time.
 
-## Purpose
+---
 
-_To be defined during domain implementation._
+## What Lives Here
 
-## Status
+```
+51-CONTINUOUS-IMPROV/
+├── processes/
+│   ├── quarterly-review.md     # CCOS quarterly review process
+│   └── methodology-update.md   # How to update playbooks and checklists
+└── README.md
+```
 
-- [x] Directory created
-- [x] README placeholder in place
-- [ ] Full implementation pending
+---
 
-## Related Domains
+## Improvement Triggers
 
-See `README.md` in the repository root for the complete dependency map.
+| Trigger | Action |
+|---------|--------|
+| New CVE affects methodology | Update relevant playbook + CVE watchlist |
+| Finding not in KB after engagement | Add to 32-KNOWLEDGE-BASE/findings/ |
+| Retrospective identifies process gap | Update relevant procedure or checklist |
+| New tool adopted | Add to 22-PENTESTING/tools/pentest-toolkit.md |
+| Quarterly review | Full CCOS audit (see quarterly-review.md) |
+
+---
+
+## Quarterly CCOS Review Checklist
+
+- [ ] Review all playbooks for stale tool versions or deprecated commands
+- [ ] Update CVE watchlist — remove resolved, add new high-priority
+- [ ] Add retrospective entries from completed engagements
+- [ ] Review certification roadmap — update progress, adjust priorities
+- [ ] Check GitHub issues for any reported CCOS gaps
+- [ ] Update proposal template pricing if rates changed
+- [ ] Review and update client NDA if legal requirements changed
