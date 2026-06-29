@@ -1,11 +1,12 @@
 name: Docker Image Build
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "00-PLATFORM/docker/**"
   workflow_dispatch:
+  # Automatic build re-enabled once GHCR permissions are configured:
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - "00-PLATFORM/docker/**"
 
 env:
   REGISTRY: ghcr.io
