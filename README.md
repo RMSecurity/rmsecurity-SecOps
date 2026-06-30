@@ -1,4 +1,4 @@
-# CCOS — Cybersecurity Consulting Operating System
+# CCOS — Cybersecurity Consulting Operating System - RMSecurity
 ### rmsecurity | Internal Operations Repository
 
 This repository is the single source of truth for every operation performed by rmsecurity.
