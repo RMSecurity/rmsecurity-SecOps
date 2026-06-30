@@ -444,36 +444,16 @@
 
     footer a { color: var(--blue); text-decoration: none; }
 
-    /* ── HAT LEGEND ── */
-    .hat-legend {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
+    /* ── HERO LOGO ── */
+    .hero-logo {
+      margin-bottom: 2rem;
     }
 
-    .hat {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .hero-logo img {
+      width: 160px;
+      height: auto;
+      filter: drop-shadow(0 0 32px rgba(155,92,255,0.5)) drop-shadow(0 0 64px rgba(255,45,85,0.2));
     }
-
-    .hat-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-    }
-
-    .hat.red   .hat-dot { background: var(--red);    box-shadow: 0 0 8px var(--red); }
-    .hat.blue  .hat-dot { background: var(--blue);   box-shadow: 0 0 8px var(--blue); }
-    .hat.purp  .hat-dot { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
-    .hat.red   { color: var(--red); }
-    .hat.blue  { color: var(--blue); }
-    .hat.purp  { color: var(--purple); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
@@ -501,13 +481,9 @@
 <section id="hero">
   <div class="hero-inner">
 
-    <div class="hat-legend">
-      <div class="hat red"><div class="hat-dot"></div>Red Team</div>
-      <div class="hat blue"><div class="hat-dot"></div>Blue Team</div>
-      <div class="hat purp"><div class="hat-dot"></div>Purple Team</div>
+    <div class="hero-logo">
+      <img src="RMS.png" alt="rmsecurity shield" />
     </div>
-
-    <div class="hero-eyebrow">Cybersecurity Consulting</div>
 
     <h1>
       Find your vulnerabilities<br>
