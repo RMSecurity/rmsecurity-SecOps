@@ -9,21 +9,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0D1B2A;
-      --blue:   #1E6FD9;
-      --silver: #C0C8D4;
-      --white:  #FFFFFF;
-      --light:  #F4F6F9;
-      --text:   #2C3A4A;
-      --muted:  #5A6A7A;
+      --bg:       #080B12;
+      --bg2:      #0D1120;
+      --red:      #FF2D55;
+      --red-dim:  rgba(255, 45, 85, 0.15);
+      --blue:     #00C2FF;
+      --blue-dim: rgba(0, 194, 255, 0.12);
+      --purple:   #9B5CFF;
+      --purple-dim: rgba(155, 92, 255, 0.15);
+      --white:    #FFFFFF;
+      --silver:   #A8B2C4;
+      --muted:    #5A6478;
+      --border:   rgba(255,255,255,0.07);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: var(--text);
-      background: var(--white);
+      background: var(--bg);
+      color: var(--silver);
       line-height: 1.6;
     }
 
@@ -31,37 +36,32 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(13, 27, 42, 0.97);
-      backdrop-filter: blur(8px);
-      padding: 0 2rem;
-      height: 64px;
+      background: rgba(8, 11, 18, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 100;
     }
 
-    .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    .nav-logo span { color: var(--blue); }
+    .nav-logo img { height: 42px; width: auto; vertical-align: middle; }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
     .nav-links a {
       color: var(--silver);
       text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       transition: color 0.2s;
     }
 
@@ -70,89 +70,120 @@
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      background: var(--navy);
+      background: var(--bg);
       display: flex;
       align-items: center;
-      padding: 7rem 2rem 4rem;
+      padding: 8rem 2.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Glow blobs */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,45,85,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -50px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(155,92,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .hero-inner {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-eyebrow {
-      display: inline-block;
-      background: rgba(30, 111, 217, 0.18);
-      color: var(--blue);
-      border: 1px solid rgba(30, 111, 217, 0.4);
-      padding: 0.25rem 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red-dim);
+      color: var(--red);
+      border: 1px solid rgba(255,45,85,0.3);
+      padding: 0.3rem 0.9rem;
       border-radius: 100px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
     }
+
+    .hero-eyebrow::before { content: '▲'; font-size: 0.6rem; }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 900;
       letter-spacing: -0.04em;
       color: var(--white);
-      line-height: 1.1;
+      line-height: 1.08;
       margin-bottom: 1.5rem;
     }
 
-    h1 .accent { color: var(--blue); }
+    h1 .red   { color: var(--red); }
+    h1 .blue  { color: var(--blue); }
+    h1 .purp  { color: var(--purple); }
 
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--silver);
-      max-width: 560px;
+      max-width: 540px;
       margin-bottom: 2.5rem;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.8rem 1.75rem;
+      padding: 0.85rem 1.9rem;
       border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 700;
       text-decoration: none;
-      transition: all 0.2s;
+      letter-spacing: 0.02em;
+      transition: all 0.22s;
     }
 
-    .btn-primary {
-      background: var(--blue);
+    .btn-red {
+      background: var(--red);
       color: var(--white);
+      box-shadow: 0 0 24px rgba(255,45,85,0.35);
     }
 
-    .btn-primary:hover {
-      background: #1a5fc4;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(30, 111, 217, 0.35);
+    .btn-red:hover {
+      background: #ff1a40;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(255,45,85,0.55);
     }
 
     .btn-ghost {
       background: transparent;
       color: var(--silver);
-      border: 1px solid rgba(192, 200, 212, 0.35);
+      border: 1px solid rgba(168,178,196,0.25);
       margin-left: 1rem;
     }
 
     .btn-ghost:hover {
       color: var(--white);
-      border-color: var(--silver);
+      border-color: rgba(168,178,196,0.5);
+      box-shadow: 0 0 20px rgba(0,194,255,0.08);
     }
 
     /* ── TRUST BAR ── */
     .trust-bar {
-      background: rgba(255,255,255,0.04);
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid var(--border);
       margin-top: 4rem;
-      padding: 1.25rem 0;
+      padding-top: 1.5rem;
       display: flex;
       gap: 2.5rem;
       flex-wrap: wrap;
@@ -163,238 +194,292 @@
       align-items: center;
       gap: 0.5rem;
       color: var(--silver);
-      font-size: 0.85rem;
+      font-size: 0.83rem;
     }
 
-    .trust-item .check {
-      color: var(--blue);
-      font-weight: 700;
-    }
+    .trust-item .check { color: var(--blue); font-weight: 800; }
 
-    /* ── SECTIONS ── */
-    section { padding: 5rem 2rem; }
-
-    .section-inner { max-width: 1000px; margin: 0 auto; }
+    /* ── SECTION BASE ── */
+    section { padding: 5.5rem 2.5rem; }
+    .section-inner { max-width: 1040px; margin: 0 auto; }
 
     .section-label {
-      color: var(--blue);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
     }
 
     h2 {
-      font-size: clamp(1.75rem, 3vw, 2.4rem);
-      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
       letter-spacing: -0.03em;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 1rem;
     }
 
     .section-desc {
       color: var(--muted);
-      max-width: 540px;
+      max-width: 520px;
       margin-bottom: 3rem;
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
 
-    /* ── SERVICES GRID ── */
-    #services { background: var(--light); }
+    /* ── SERVICES ── */
+    #services { background: var(--bg2); }
+
+    #services .section-label { color: var(--red); }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
 
     .service-card {
-      background: var(--white);
-      border: 1px solid #E4E8EE;
-      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 1.75rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--purple));
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
     .service-card:hover {
-      box-shadow: 0 8px 32px rgba(13, 27, 42, 0.10);
-      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
 
+    .service-card:hover::before { opacity: 1; }
+
     .service-icon {
-      width: 42px;
-      height: 42px;
-      background: rgba(30, 111, 217, 0.1);
-      border-radius: 8px;
+      width: 44px; height: 44px;
+      background: var(--red-dim);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
+      margin-bottom: 1.1rem;
+      border: 1px solid rgba(255,45,85,0.2);
     }
 
     .service-card h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--white);
       margin-bottom: 0.5rem;
     }
 
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
     /* ── APPROACH ── */
+    #approach { background: var(--bg); }
+    #approach .section-label { color: var(--blue); }
+
     .approach-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      counter-reset: steps;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .approach-steps::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 2.5rem; right: 2.5rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), var(--purple), var(--blue));
+      opacity: 0.3;
     }
 
     .step {
-      position: relative;
-      padding-top: 1rem;
+      padding: 0 1.5rem 0 0;
       counter-increment: steps;
+      position: relative;
     }
 
-    .step::before {
-      content: "0" counter(steps);
-      display: block;
-      font-size: 2rem;
-      font-weight: 900;
-      color: rgba(30, 111, 217, 0.2);
-      letter-spacing: -0.05em;
-      margin-bottom: 0.5rem;
+    .step-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 2px solid var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 1.25rem;
+      box-shadow: 0 0 16px rgba(155,92,255,0.3);
     }
 
-    .step h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
-
-    .step p {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
+    .step h3 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+    .step p  { font-size: 0.84rem; color: var(--muted); }
 
     /* ── WHY ── */
-    #why { background: var(--navy); }
-
-    #why h2 { color: var(--white); }
-    #why .section-desc { color: var(--silver); }
+    #why { background: var(--bg2); }
+    #why .section-label { color: var(--purple); }
 
     .why-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .why-item {
-      border-left: 3px solid var(--blue);
-      padding-left: 1.25rem;
+      background: rgba(155,92,255,0.05);
+      border: 1px solid rgba(155,92,255,0.15);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.2s;
     }
 
-    .why-item h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.4rem;
+    .why-item:hover {
+      border-color: rgba(155,92,255,0.35);
+      box-shadow: 0 0 24px rgba(155,92,255,0.12);
     }
 
-    .why-item p {
-      font-size: 0.88rem;
-      color: var(--silver);
-    }
+    .why-item h3 { font-size: 0.97rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .why-item p  { font-size: 0.86rem; color: var(--muted); }
 
     /* ── DELIVERABLES ── */
+    #deliverables { background: var(--bg); }
+    #deliverables .section-label { color: var(--blue); }
+
     .deliverables-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
     }
 
     .deliverable {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      background: var(--light);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
+      gap: 1rem;
+      background: rgba(0,194,255,0.04);
+      border: 1px solid rgba(0,194,255,0.1);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      transition: all 0.2s;
     }
 
-    .deliverable .icon {
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
+    .deliverable:hover {
+      border-color: rgba(0,194,255,0.25);
+      box-shadow: 0 0 20px rgba(0,194,255,0.08);
     }
 
-    .deliverable h4 {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.2rem;
-    }
-
-    .deliverable p {
-      font-size: 0.83rem;
-      color: var(--muted);
-    }
+    .deliverable .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .deliverable h4   { font-size: 0.92rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+    .deliverable p    { font-size: 0.82rem; color: var(--muted); }
 
     /* ── CTA ── */
     #contact {
-      background: var(--blue);
+      background: linear-gradient(135deg, rgba(255,45,85,0.1) 0%, rgba(155,92,255,0.1) 50%, rgba(0,194,255,0.08) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       text-align: center;
-      padding: 5rem 2rem;
+      padding: 6rem 2.5rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    #contact h2 {
-      color: var(--white);
-      margin-bottom: 1rem;
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(155,92,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
+
+    #contact h2 { margin-bottom: 1rem; position: relative; }
 
     #contact p {
-      color: rgba(255,255,255,0.8);
       font-size: 1.05rem;
-      margin-bottom: 2rem;
-      max-width: 480px;
+      color: var(--silver);
+      margin-bottom: 2.25rem;
+      max-width: 460px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
     }
 
-    .btn-white {
-      background: var(--white);
-      color: var(--blue);
+    .btn-cta {
+      background: linear-gradient(135deg, var(--red), var(--purple));
+      color: var(--white);
       font-weight: 700;
+      box-shadow: 0 0 32px rgba(155,92,255,0.4);
+      position: relative;
     }
 
-    .btn-white:hover {
-      background: var(--light);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 52px rgba(155,92,255,0.6);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--navy);
-      color: var(--silver);
+      background: var(--bg);
+      color: var(--muted);
       text-align: center;
       padding: 2rem;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.83rem;
+      border-top: 1px solid var(--border);
     }
 
     footer a { color: var(--blue); text-decoration: none; }
 
+    /* ── HAT LEGEND ── */
+    .hat-legend {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hat {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hat-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    .hat.red   .hat-dot { background: var(--red);    box-shadow: 0 0 8px var(--red); }
+    .hat.blue  .hat-dot { background: var(--blue);   box-shadow: 0 0 8px var(--blue); }
+    .hat.purp  .hat-dot { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+    .hat.red   { color: var(--red); }
+    .hat.blue  { color: var(--blue); }
+    .hat.purp  { color: var(--purple); }
+
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .nav-links { display: none; }
       .btn-ghost { display: none; }
+      .approach-steps::before { display: none; }
       .trust-bar { gap: 1.25rem; }
     }
   </style>
@@ -403,7 +488,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo"><img src="RMS.png" alt="rmsecurity" style="height:40px;width:auto;vertical-align:middle;" /></a>
+  <a href="#hero" class="nav-logo"><img src="RMS.png" alt="rmsecurity" /></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#approach">Approach</a></li>
@@ -415,16 +500,26 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
+
+    <div class="hat-legend">
+      <div class="hat red"><div class="hat-dot"></div>Red Team</div>
+      <div class="hat blue"><div class="hat-dot"></div>Blue Team</div>
+      <div class="hat purp"><div class="hat-dot"></div>Purple Team</div>
+    </div>
+
     <div class="hero-eyebrow">Cybersecurity Consulting</div>
+
     <h1>
       Find your vulnerabilities<br>
-      <span class="accent">before attackers do.</span>
+      <span class="red">before</span> <span class="purp">attackers</span> <span class="blue">do.</span>
     </h1>
+
     <p class="hero-sub">
       rmsecurity delivers expert penetration testing, cloud security assessments,
       and incident response. Actionable findings, clear reports, no noise.
     </p>
-    <a href="#contact" class="btn btn-primary">Schedule a call</a>
+
+    <a href="#contact" class="btn btn-red">Schedule a call</a>
     <a href="#services" class="btn btn-ghost">Our services</a>
 
     <div class="trust-bar">
@@ -445,38 +540,32 @@
       From initial scoping to final retest — every engagement is tailored
       to your environment and risk profile.
     </p>
-
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">&#127760;</div>
         <h3>External Network Penetration Test</h3>
         <p>Assess your perimeter from an attacker's perspective. We enumerate your internet-facing assets, identify exploitable weaknesses, and attempt to gain an internal foothold.</p>
       </div>
-
       <div class="service-card">
         <div class="service-icon">&#128268;</div>
         <h3>Internal Network Penetration Test</h3>
         <p>Simulate an insider threat or post-breach attacker. We test your segmentation, credential hygiene, Active Directory configuration, and lateral movement paths.</p>
       </div>
-
       <div class="service-card">
         <div class="service-icon">&#128196;</div>
         <h3>Web Application Assessment</h3>
         <p>Full OWASP WSTG coverage — authentication, authorization, injection, business logic, and client-side vulnerabilities across your web and API surfaces.</p>
       </div>
-
       <div class="service-card">
         <div class="service-icon">&#9729;</div>
         <h3>Cloud Security Assessment</h3>
         <p>Review of your AWS, Azure, or M365 configuration against security best practices: IAM policies, storage exposure, network controls, and identity risks.</p>
       </div>
-
       <div class="service-card">
         <div class="service-icon">&#128250;</div>
         <h3>Active Directory Assessment</h3>
         <p>Deep analysis of your AD environment: Kerberoasting exposure, delegation misconfigurations, ACL abuse paths, and privilege escalation routes to Domain Admin.</p>
       </div>
-
       <div class="service-card">
         <div class="service-icon">&#128680;</div>
         <h3>Incident Response</h3>
@@ -492,30 +581,34 @@
     <div class="section-label">How we work</div>
     <h2>A structured engagement, every time</h2>
     <p class="section-desc">
-      Every engagement follows our tested methodology — no shortcuts, no
-      surprises. Four quality gates ensure nothing falls through the cracks.
+      Every engagement follows our tested methodology — no shortcuts, no surprises.
+      Four quality gates ensure nothing falls through the cracks.
     </p>
-
     <div class="approach-steps">
       <div class="step">
+        <div class="step-num">01</div>
         <h3>Scoping &amp; Authorization</h3>
         <p>We define the target environment, rules of engagement, and success criteria before a single packet is sent.</p>
       </div>
       <div class="step">
+        <div class="step-num">02</div>
         <h3>Reconnaissance</h3>
         <p>Passive and active enumeration to map your attack surface — assets, services, technologies, and exposure.</p>
       </div>
       <div class="step">
+        <div class="step-num">03</div>
         <h3>Testing</h3>
-        <p>Manual exploitation following OWASP, PTES, and MITRE ATT&amp;CK frameworks. Every finding is confirmed — no automated-scanner noise.</p>
+        <p>Manual exploitation following OWASP, PTES, and MITRE ATT&amp;CK. Every finding is confirmed — no scanner noise.</p>
       </div>
       <div class="step">
+        <div class="step-num">04</div>
         <h3>Reporting</h3>
-        <p>Technical report plus executive summary. Each finding includes reproduction steps, business impact, and a prioritized remediation recommendation.</p>
+        <p>Technical report plus executive summary. Each finding includes reproduction steps, business impact, and remediation guidance.</p>
       </div>
       <div class="step">
+        <div class="step-num">05</div>
         <h3>Retest</h3>
-        <p>After you remediate, we retest Critical and High findings at no additional charge within 60 days and issue a delta report confirming resolution.</p>
+        <p>After you remediate, we retest Critical and High findings at no charge within 60 days and issue a delta report.</p>
       </div>
     </div>
   </div>
@@ -524,10 +617,9 @@
 <!-- WHY -->
 <section id="why">
   <div class="section-inner">
-    <div class="section-label" style="color: rgba(30,111,217,0.9)">Why rmsecurity</div>
+    <div class="section-label">Why rmsecurity</div>
     <h2>What sets us apart</h2>
-    <p class="section-desc">We're a focused practice, not a factory. Your engagement gets senior expertise, not junior analysts running scanners.</p>
-
+    <p class="section-desc">A focused practice, not a factory. Your engagement gets senior expertise — not junior analysts running scanners.</p>
     <div class="why-grid">
       <div class="why-item">
         <h3>Manual testing, not scanner output</h3>
@@ -535,7 +627,7 @@
       </div>
       <div class="why-item">
         <h3>Business-context findings</h3>
-        <p>Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading the technical details.</p>
+        <p>Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.</p>
       </div>
       <div class="why-item">
         <h3>Evidence you can trust</h3>
@@ -555,7 +647,6 @@
     <div class="section-label">What you receive</div>
     <h2>Every engagement includes</h2>
     <p class="section-desc">Professional, complete deliverables — ready to share with your board, auditors, or technical teams.</p>
-
     <div class="deliverables-list">
       <div class="deliverable">
         <div class="icon">&#128196;</div>
@@ -607,7 +698,7 @@
 <section id="contact">
   <h2>Ready to find out what attackers can see?</h2>
   <p>Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.</p>
-  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-white">Schedule a call &rarr;</a>
+  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-cta">Schedule a call &rarr;</a>
 </section>
 
 <!-- FOOTER -->
