@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rmsecurity-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "docs", "-p", "3100", "--no-clipboard"],
+      "port": 3100
+    }
+  ]
+}
