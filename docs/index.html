@@ -488,6 +488,66 @@
 
     footer a { color: var(--blue); text-decoration: none; }
 
+    /* ── SITUATIONS ── */
+    #situations { background: var(--bg); }
+    #situations .section-label { color: var(--red); }
+    .situations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .situation-card {
+      border-left: 3px solid var(--red);
+      background: rgba(255,45,85,0.04);
+      border-radius: 0 10px 10px 0;
+      padding: 1.25rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .situation-card:hover { background: rgba(255,45,85,0.07); }
+    .situation-card .quote {
+      font-size: 0.98rem;
+      color: var(--silver);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 0.5rem;
+    }
+    .situation-card .outcome {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .situation-card .outcome strong { color: var(--red); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--bg2); }
+    #faq .section-label { color: var(--blue); }
+    .faq-list { max-width: 740px; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+    .faq-q::after { content: '+'; color: var(--blue); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding-top: 0.75rem;
+    }
+    .faq-item.open .faq-a { display: block; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -532,17 +592,18 @@
     </h1>
 
     <p class="hero-sub" data-i18n="hero.sub">
-      Live security monitoring, OSINT intelligence, incident response, and custom-built engagements — real protection for organizations that can't afford to be the next headline.
+      Something flagged at 2am. A supplier got breached. Someone clicked a link they shouldn't have.
+      I help you know what's real, contain it fast, and make sure it doesn't happen again.
     </p>
 
-    <a href="#contact" class="btn btn-red" data-i18n="hero.cta1">Talk to an expert</a>
-    <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">Our services</a>
+    <a href="#contact" class="btn btn-red" data-i18n="hero.cta1">Talk to me directly</a>
+    <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">What I do</a>
 
     <div class="trust-bar">
-      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.1">Live 24/7 monitoring</span></div>
-      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.2">OSINT &amp; threat intelligence</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.1">Live security monitoring</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.2">OSINT &amp; threat intel</span></div>
       <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.3">Incident response</span></div>
-      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.4">100% custom engagements</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.4">Custom engagements</span></div>
     </div>
   </div>
 </section>
@@ -583,6 +644,41 @@
         <div class="service-icon">&#128274;</div>
         <h3 data-i18n="s6.title">Threat Intelligence</h3>
         <p data-i18n="s6.desc">Dark web monitoring, underground forums, and threat feeds to detect if your organization is being mentioned, sold, or prepared as a target.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITUATIONS -->
+<section id="situations">
+  <div class="section-inner">
+    <div class="section-label">Sound familiar?</div>
+    <h2>The calls I get at 2am</h2>
+    <p class="section-desc">Real scenarios — not hypothetical threats. If any of these have crossed your mind, you're in the right place.</p>
+    <div class="situations-grid">
+      <div class="situation-card">
+        <p class="quote">"Our EDR flagged something on an executive's laptop. IT thinks it's a false positive. But what if it isn't?"</p>
+        <p class="outcome"><strong>What happens:</strong> We analyze the alert, confirm or deny the threat, and contain it before it spreads.</p>
+      </div>
+      <div class="situation-card">
+        <p class="quote">"A supplier of ours got breached. We share credentials with them. Do we need to worry?"</p>
+        <p class="outcome"><strong>What happens:</strong> Supply chain exposure assessment — we map what was shared and audit for compromise indicators.</p>
+      </div>
+      <div class="situation-card">
+        <p class="quote">"We're about to close a deal and the client is asking about our security posture. We need something real, not a checklist."</p>
+        <p class="outcome"><strong>What happens:</strong> A proper assessment with a report you can actually hand to a client or auditor.</p>
+      </div>
+      <div class="situation-card">
+        <p class="quote">"Someone sent phishing emails pretending to be our CEO. We don't know how many people clicked."</p>
+        <p class="outcome"><strong>What happens:</strong> Phishing incident response — identify who clicked, what was exposed, and lock it down.</p>
+      </div>
+      <div class="situation-card">
+        <p class="quote">"We want to know what an attacker can find about us before we run a real test."</p>
+        <p class="outcome"><strong>What happens:</strong> OSINT assessment — I build the external picture of your organization the way an attacker would.</p>
+      </div>
+      <div class="situation-card">
+        <p class="quote">"We've never had a proper security test. We don't even know where to start."</p>
+        <p class="outcome"><strong>What happens:</strong> 30-minute scoping call, zero commitment. We figure out what actually makes sense for your size and risk.</p>
       </div>
     </div>
   </div>
@@ -633,19 +729,19 @@
     <div class="why-grid">
       <div class="why-item">
         <h3 data-i18n="w1.title">Manual testing, not scanner output</h3>
-        <p data-i18n="w1.desc">Automated tools find known CVEs. Manual testing finds the logic flaws, chained vulnerabilities, and business risks that scanners miss.</p>
+        <p data-i18n="w1.desc">Scanners find known CVEs. I find the logic flaws, the chained vulnerabilities, the "this only works if you combine A + B + C" findings that no automated tool will ever catch.</p>
       </div>
       <div class="why-item">
-        <h3 data-i18n="w2.title">Business-context findings</h3>
-        <p data-i18n="w2.desc">Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.</p>
+        <h3 data-i18n="w2.title">You'll actually understand the report</h3>
+        <p data-i18n="w2.desc">I write findings in plain language with business impact. Your CTO and your CEO should both be able to read it. A CVSS score alone tells you nothing actionable.</p>
       </div>
       <div class="why-item">
-        <h3 data-i18n="w3.title">Evidence you can trust</h3>
-        <p data-i18n="w3.desc">SHA-256 verified evidence with full chain of custody. Every claim in our reports is backed by documented, reproducible proof.</p>
+        <h3 data-i18n="w3.title">You reach me, not a ticketing system</h3>
+        <p data-i18n="w3.desc">When you have a question mid-remediation, you email me. Not a support portal. Not an account manager who'll ask someone else. The person who found the vulnerability answers your question.</p>
       </div>
       <div class="why-item">
-        <h3 data-i18n="w4.title">Remediation partnership</h3>
-        <p data-i18n="w4.desc">We don't disappear after delivery. We answer questions during your remediation window and retest critical findings at no added cost.</p>
+        <h3 data-i18n="w4.title">Total transparency, always</h3>
+        <p data-i18n="w4.desc">If I find something critical on day two of a three-week engagement, you hear about it on day two. No surprises at final delivery. No holding back findings to pad the report.</p>
       </div>
     </div>
   </div>
@@ -704,11 +800,46 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2>Questions I get asked</h2>
+    <p class="section-desc">Straightforward answers. No sales pitch.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How is this different from hiring a big cybersecurity firm?</div>
+        <div class="faq-a">Big firms assign you a junior analyst with a checklist. Here you deal directly with the person doing the actual work. No account managers, no hand-offs. I know your environment because I'm the one in it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much does it cost?</div>
+        <div class="faq-a">It depends on scope — a quick attack surface assessment runs differently from a full red team engagement. I don't post pricing because scope varies too much to be meaningful. The honest answer: I'm priced for companies that can't afford enterprise retainers but need real work, not a scan-and-report. Send me what you're thinking and I'll tell you if I can help.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you work with small businesses or only enterprises?</div>
+        <div class="faq-a">Mostly mid-size companies and growing startups — teams large enough to have real risk but small enough that "big firm" prices don't make sense. If you're a 5-person startup or a 5,000-person company, I can point you in the right direction either way.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if you find something critical?</div>
+        <div class="faq-a">You hear from me immediately — not in the final report weeks later. I don't wait until the end of an engagement to tell you there's an active risk. We stop, we talk, and we figure out next steps together.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I know what you found is actually exploitable and not just a scanner result?</div>
+        <div class="faq-a">Every finding in my reports has been manually confirmed. I don't hand you Nessus output with a logo on it. If it's in the report, I've verified it's real and documented exactly how it was reproduced.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I think we already got breached. Can you help?</div>
+        <div class="faq-a">Yes. Email me directly at <a href="mailto:rodrigo.moses@gmail.com" style="color:var(--blue)">rodrigo.moses@gmail.com</a> and put URGENT in the subject line. I'll get back to you within the hour during business hours, and I check evenings for critical incidents.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
-  <h2 data-i18n="cta.h2">Ready to find out what attackers can see?</h2>
-  <p data-i18n="cta.p">Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.</p>
-  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-cta" data-i18n="cta.btn">Schedule a call &rarr;</a>
+  <h2 data-i18n="cta.h2">Let's talk about your risk.</h2>
+  <p data-i18n="cta.p">30-minute call, no pitch, no pressure. You describe your environment and what's keeping you up at night. I tell you honestly whether I can help and what that would look like.</p>
+  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-cta" data-i18n="cta.btn">Email me directly &rarr;</a>
 </section>
 
 <!-- FOOTER -->
@@ -719,6 +850,14 @@
 </footer>
 
 <script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      item.classList.toggle('open');
+    });
+  });
+
   const i18n = {
     en: {
       "nav.services": "Services",
@@ -729,9 +868,9 @@
       "hero.before": "before",
       "hero.attackers": "attackers",
       "hero.do": "do.",
-      "hero.sub": "Live security monitoring, OSINT intelligence, incident response, and custom-built engagements — real protection for organizations that can't afford to be the next headline.",
-      "hero.cta1": "Talk to an expert",
-      "hero.cta2": "Our services",
+      "hero.sub": "Something flagged at 2am. A supplier got breached. Someone clicked a link they shouldn't have. I help you know what's real, contain it fast, and make sure it doesn't happen again.",
+      "hero.cta1": "Talk to me directly",
+      "hero.cta2": "What I do",
       "trust.1": "Live 24/7 monitoring",
       "trust.2": "OSINT & threat intelligence",
       "trust.3": "Incident response",
@@ -768,13 +907,13 @@
       "why.h2": "What sets us apart",
       "why.desc": "A focused practice, not a factory. Your engagement gets senior expertise — not junior analysts running scanners.",
       "w1.title": "Manual testing, not scanner output",
-      "w1.desc": "Automated tools find known CVEs. Manual testing finds the logic flaws, chained vulnerabilities, and business risks that scanners miss.",
-      "w2.title": "Business-context findings",
-      "w2.desc": "Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.",
-      "w3.title": "Evidence you can trust",
-      "w3.desc": "SHA-256 verified evidence with full chain of custody. Every claim in our reports is backed by documented, reproducible proof.",
-      "w4.title": "Remediation partnership",
-      "w4.desc": "We don't disappear after delivery. We answer questions during your remediation window and retest critical findings at no added cost.",
+      "w1.desc": "Scanners find known CVEs. I find the logic flaws, the chained vulnerabilities, the 'this only works if you combine A + B + C' findings that no automated tool will ever catch.",
+      "w2.title": "You'll actually understand the report",
+      "w2.desc": "I write findings in plain language with business impact. Your CTO and your CEO should both be able to read it. A CVSS score alone tells you nothing actionable.",
+      "w3.title": "You reach me, not a ticketing system",
+      "w3.desc": "When you have a question mid-remediation, you email me. Not a support portal. Not an account manager. The person who found the vulnerability answers your question.",
+      "w4.title": "Total transparency, always",
+      "w4.desc": "If I find something critical on day two of a three-week engagement, you hear about it on day two. No surprises at final delivery. No holding back findings to pad the report.",
       "del.label": "What you receive",
       "del.h2": "Every engagement includes",
       "del.desc": "Professional, complete deliverables — ready to share with your board, auditors, or technical teams.",
@@ -790,9 +929,9 @@
       "d5.desc": "Retest of Critical and High findings within 60 days, with a delta report confirming resolution.",
       "d6.title": "Report Walkthrough",
       "d6.desc": "Debrief call with your technical team to walk through findings and answer remediation questions.",
-      "cta.h2": "Ready to find out what attackers can see?",
-      "cta.p": "Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.",
-      "cta.btn": "Schedule a call →",
+      "cta.h2": "Let's talk about your risk.",
+      "cta.p": "30-minute call, no pitch, no pressure. You describe your environment and what's keeping you up at night. I tell you honestly whether I can help.",
+      "cta.btn": "Email me directly →",
       "footer.rights": "All rights reserved"
     },
     es: {
@@ -804,9 +943,9 @@
       "hero.before": "antes",
       "hero.attackers": "que los",
       "hero.do": "atacantes.",
-      "hero.sub": "Monitoreo de seguridad en vivo, inteligencia OSINT, respuesta a incidentes y proyectos a medida — protección real para organizaciones que no pueden permitirse ser la próxima víctima.",
-      "hero.cta1": "Hablar con un experto",
-      "hero.cta2": "Ver servicios",
+      "hero.sub": "Algo se marcó a las 2am. Un proveedor fue comprometido. Alguien hizo clic en algo que no debía. Te ayudo a saber qué es real, contenerlo rápido y evitar que vuelva a pasar.",
+      "hero.cta1": "Escribime directamente",
+      "hero.cta2": "Qué hago",
       "trust.1": "Monitoreo 24/7 en vivo",
       "trust.2": "OSINT e inteligencia de amenazas",
       "trust.3": "Respuesta a incidentes",
