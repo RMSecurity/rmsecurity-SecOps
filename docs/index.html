@@ -145,36 +145,84 @@
       margin-bottom: 2.5rem;
       position: relative;
       display: inline-block;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Rotating neon tri-color halo */
+    .shield-halo {
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(255,45,85,0.55)   0%,
+        rgba(155,92,255,0.55)  33%,
+        rgba(0,194,255,0.55)   66%,
+        rgba(255,45,85,0.55)  100%
+      );
+      filter: blur(32px);
+      animation: haloSpin 8s linear infinite;
+      z-index: 0;
+    }
+
+    /* Static outer ring — color arc */
+    .shield-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(255,45,85,0.8)    0%,
+        rgba(155,92,255,0.8)   33%,
+        rgba(0,194,255,0.8)    66%,
+        rgba(255,45,85,0.8)   100%
+      );
+      -webkit-mask: radial-gradient(transparent calc(100% - 2px), black calc(100% - 2px));
+      mask: radial-gradient(transparent calc(100% - 2px), black calc(100% - 2px));
+      animation: haloSpin 8s linear infinite;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes haloSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
 
     .hero-shield img {
-      width: 220px;
+      width: 300px;
       height: auto;
+      position: relative;
+      z-index: 1;
       mix-blend-mode: screen;
-      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 75%);
-      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 50%, black 38%, transparent 72%);
+      mask-image: radial-gradient(ellipse 78% 78% at 50% 50%, black 38%, transparent 72%);
       filter:
-        drop-shadow(0 0 20px rgba(255,45,85,0.6))
-        drop-shadow(0 0 50px rgba(155,92,255,0.45))
-        drop-shadow(0 0 90px rgba(0,194,255,0.2))
-        saturate(1.3) brightness(1.1);
+        drop-shadow(0 0 12px rgba(0,194,255,0.9))
+        drop-shadow(0 0 28px rgba(255,45,85,0.75))
+        drop-shadow(0 0 55px rgba(155,92,255,0.6))
+        saturate(1.4) brightness(1.15);
       animation: shieldPulse 4s ease-in-out infinite;
     }
 
     @keyframes shieldPulse {
       0%, 100% {
         filter:
-          drop-shadow(0 0 20px rgba(255,45,85,0.6))
-          drop-shadow(0 0 50px rgba(155,92,255,0.45))
-          drop-shadow(0 0 90px rgba(0,194,255,0.2))
-          saturate(1.3) brightness(1.1);
+          drop-shadow(0 0 12px rgba(0,194,255,0.9))
+          drop-shadow(0 0 28px rgba(255,45,85,0.75))
+          drop-shadow(0 0 55px rgba(155,92,255,0.6))
+          saturate(1.4) brightness(1.15);
       }
       50% {
         filter:
-          drop-shadow(0 0 30px rgba(255,45,85,0.8))
-          drop-shadow(0 0 70px rgba(155,92,255,0.65))
-          drop-shadow(0 0 120px rgba(0,194,255,0.35))
-          saturate(1.5) brightness(1.2);
+          drop-shadow(0 0 18px rgba(0,194,255,1))
+          drop-shadow(0 0 40px rgba(255,45,85,0.95))
+          drop-shadow(0 0 80px rgba(155,92,255,0.8))
+          saturate(1.6) brightness(1.25);
       }
     }
 
@@ -581,6 +629,8 @@
   <div class="hero-inner">
 
     <div class="hero-shield">
+      <div class="shield-halo"></div>
+      <div class="shield-ring"></div>
       <img src="RMS.png" alt="rmsecurity shield" />
     </div>
 
