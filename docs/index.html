@@ -4,23 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rmsecurity — Cybersecurity Consulting</title>
-  <meta name="description" content="rmsecurity provides expert penetration testing, cloud security assessments, and incident response for organizations that take security seriously." />
+  <meta name="description" content="rmsecurity provides live security monitoring, OSINT, incident response, and custom cybersecurity engagements." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #080B12;
-      --bg2:      #0D1120;
-      --red:      #FF2D55;
-      --red-dim:  rgba(255, 45, 85, 0.15);
-      --blue:     #00C2FF;
-      --blue-dim: rgba(0, 194, 255, 0.12);
-      --purple:   #9B5CFF;
+      --bg:         #080B12;
+      --bg2:        #0D1120;
+      --red:        #FF2D55;
+      --red-dim:    rgba(255, 45, 85, 0.15);
+      --blue:       #00C2FF;
+      --blue-dim:   rgba(0, 194, 255, 0.12);
+      --purple:     #9B5CFF;
       --purple-dim: rgba(155, 92, 255, 0.15);
-      --white:    #FFFFFF;
-      --silver:   #A8B2C4;
-      --muted:    #5A6478;
-      --border:   rgba(255,255,255,0.07);
+      --white:      #FFFFFF;
+      --silver:     #A8B2C4;
+      --muted:      #5A6478;
+      --border:     rgba(255,255,255,0.07);
     }
 
     html { scroll-behavior: smooth; }
@@ -47,7 +47,13 @@
       z-index: 100;
     }
 
-    .nav-logo img { height: 42px; width: auto; vertical-align: middle; }
+    .nav-logo img { height: 42px; width: auto; vertical-align: middle; mix-blend-mode: screen; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
 
     .nav-links {
       display: flex;
@@ -67,6 +73,36 @@
 
     .nav-links a:hover { color: var(--white); }
 
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.25rem 0.35rem;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 0 10px rgba(155,92,255,0.5);
+    }
+
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -78,22 +114,21 @@
       overflow: hidden;
     }
 
-    /* Glow blobs */
     #hero::before {
       content: '';
       position: absolute;
-      top: -100px; left: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,45,85,0.12) 0%, transparent 70%);
+      top: -150px; left: -150px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,45,85,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
 
     #hero::after {
       content: '';
       position: absolute;
-      bottom: -100px; right: -50px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(155,92,255,0.12) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(155,92,255,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -105,26 +140,41 @@
       text-align: center;
     }
 
-    .hero-sub { margin-left: auto; margin-right: auto; }
-    .trust-bar { justify-content: center; }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--red-dim);
-      color: var(--red);
-      border: 1px solid rgba(255,45,85,0.3);
-      padding: 0.3rem 0.9rem;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
+    /* ── SHIELD ── */
+    .hero-shield {
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
     }
 
-    .hero-eyebrow::before { content: '▲'; font-size: 0.6rem; }
+    .hero-shield img {
+      width: 220px;
+      height: auto;
+      mix-blend-mode: screen;
+      filter:
+        drop-shadow(0 0 20px rgba(255,45,85,0.6))
+        drop-shadow(0 0 50px rgba(155,92,255,0.45))
+        drop-shadow(0 0 90px rgba(0,194,255,0.2))
+        saturate(1.3) brightness(1.1);
+      animation: shieldPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes shieldPulse {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 20px rgba(255,45,85,0.6))
+          drop-shadow(0 0 50px rgba(155,92,255,0.45))
+          drop-shadow(0 0 90px rgba(0,194,255,0.2))
+          saturate(1.3) brightness(1.1);
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 30px rgba(255,45,85,0.8))
+          drop-shadow(0 0 70px rgba(155,92,255,0.65))
+          drop-shadow(0 0 120px rgba(0,194,255,0.35))
+          saturate(1.5) brightness(1.2);
+      }
+    }
 
     h1 {
       font-size: clamp(2.4rem, 5.5vw, 4rem);
@@ -135,15 +185,15 @@
       margin-bottom: 1.5rem;
     }
 
-    h1 .red   { color: var(--red); }
-    h1 .blue  { color: var(--blue); }
-    h1 .purp  { color: var(--purple); }
+    h1 .red  { color: var(--red); }
+    h1 .purp { color: var(--purple); }
+    h1 .blue { color: var(--blue); }
 
     .hero-sub {
       font-size: 1.1rem;
       color: var(--silver);
-      max-width: 540px;
-      margin-bottom: 2.5rem;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
       line-height: 1.8;
     }
 
@@ -180,15 +230,14 @@
     .btn-ghost:hover {
       color: var(--white);
       border-color: rgba(168,178,196,0.5);
-      box-shadow: 0 0 20px rgba(0,194,255,0.08);
     }
 
-    /* ── TRUST BAR ── */
     .trust-bar {
       border-top: 1px solid var(--border);
       margin-top: 4rem;
       padding-top: 1.5rem;
       display: flex;
+      justify-content: center;
       gap: 2.5rem;
       flex-wrap: wrap;
     }
@@ -203,7 +252,7 @@
 
     .trust-item .check { color: var(--blue); font-weight: 800; }
 
-    /* ── SECTION BASE ── */
+    /* ── SECTIONS ── */
     section { padding: 5.5rem 2.5rem; }
     .section-inner { max-width: 1040px; margin: 0 auto; }
 
@@ -232,7 +281,6 @@
 
     /* ── SERVICES ── */
     #services { background: var(--bg2); }
-
     #services .section-label { color: var(--red); }
 
     .services-grid {
@@ -282,14 +330,8 @@
       border: 1px solid rgba(255,45,85,0.2);
     }
 
-    .service-card h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-
-    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .service-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .service-card p  { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
 
     /* ── APPROACH ── */
     #approach { background: var(--bg); }
@@ -305,18 +347,14 @@
     .approach-steps::before {
       content: '';
       position: absolute;
-      top: 2rem;
+      top: 1.25rem;
       left: 2.5rem; right: 2.5rem;
       height: 1px;
       background: linear-gradient(90deg, var(--red), var(--purple), var(--blue));
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
-    .step {
-      padding: 0 1.5rem 0 0;
-      counter-increment: steps;
-      position: relative;
-    }
+    .step { padding: 0 1.5rem 0 0; }
 
     .step-num {
       width: 40px; height: 40px;
@@ -448,20 +486,6 @@
 
     footer a { color: var(--blue); text-decoration: none; }
 
-    /* ── HERO LOGO ── */
-    /* ── HERO LOGO ── */
-    .hero-logo {
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .hero-logo img {
-      width: 260px;
-      height: auto;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 40px rgba(155,92,255,0.55)) drop-shadow(0 0 80px rgba(255,45,85,0.25));
-    }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -476,39 +500,47 @@
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo"><img src="RMS.png" alt="rmsecurity" /></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#approach">Approach</a></li>
-    <li><a href="#deliverables">Deliverables</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#approach" data-i18n="nav.approach">Approach</a></li>
+      <li><a href="#deliverables" data-i18n="nav.deliverables">Deliverables</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
 
-    <div class="hero-logo">
+    <div class="hero-shield">
       <img src="RMS.png" alt="rmsecurity shield" />
     </div>
 
     <h1>
-      Find your vulnerabilities<br>
-      <span class="red">before</span> <span class="purp">attackers</span> <span class="blue">do.</span>
+      <span data-i18n="hero.h1a">Find your vulnerabilities</span><br>
+      <span class="red" data-i18n="hero.before">before</span>
+      <span class="purp" data-i18n="hero.attackers">attackers</span>
+      <span class="blue" data-i18n="hero.do">do.</span>
     </h1>
 
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero.sub">
       Live security monitoring, OSINT intelligence, incident response, and custom-built engagements — real protection for organizations that can't afford to be the next headline.
     </p>
 
-    <a href="#contact" class="btn btn-red">Talk to an expert</a>
-    <a href="#services" class="btn btn-ghost">Our services</a>
+    <a href="#contact" class="btn btn-red" data-i18n="hero.cta1">Talk to an expert</a>
+    <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">Our services</a>
 
     <div class="trust-bar">
-      <div class="trust-item"><span class="check">&#10003;</span> Live 24/7 monitoring</div>
-      <div class="trust-item"><span class="check">&#10003;</span> OSINT &amp; threat intelligence</div>
-      <div class="trust-item"><span class="check">&#10003;</span> Incident response</div>
-      <div class="trust-item"><span class="check">&#10003;</span> 100% custom engagements</div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.1">Live 24/7 monitoring</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.2">OSINT &amp; threat intelligence</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.3">Incident response</span></div>
+      <div class="trust-item"><span class="check">&#10003;</span> <span data-i18n="trust.4">100% custom engagements</span></div>
     </div>
   </div>
 </section>
@@ -516,41 +548,39 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
-    <div class="section-label">Services</div>
-    <h2>Real security, not just reports</h2>
-    <p class="section-desc">
-      Every service is built to detect real threats, respond fast, and adapt to your organization — no generic solutions.
-    </p>
+    <div class="section-label" data-i18n="services.label">Services</div>
+    <h2 data-i18n="services.h2">Real security, not just reports</h2>
+    <p class="section-desc" data-i18n="services.desc">Every service is built to detect real threats, respond fast, and adapt to your organization — no generic solutions.</p>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">&#128065;</div>
-        <h3>Live Security Monitoring</h3>
-        <p>Continuous real-time surveillance of your infrastructure. We detect anomalous behavior, unauthorized access, and active threats before they cause damage.</p>
+        <h3 data-i18n="s1.title">Live Security Monitoring</h3>
+        <p data-i18n="s1.desc">Continuous real-time surveillance of your infrastructure. We detect anomalous behavior, unauthorized access, and active threats before they cause damage.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">&#128270;</div>
-        <h3>OSINT for Organizations</h3>
-        <p>Open-source intelligence gathering on your company, employees, suppliers, and digital assets — everything an attacker can see before they strike.</p>
+        <h3 data-i18n="s2.title">OSINT for Organizations</h3>
+        <p data-i18n="s2.desc">Open-source intelligence gathering on your company, employees, suppliers, and digital assets — everything an attacker can see before they strike.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">&#128680;</div>
-        <h3>Incident Response</h3>
-        <p>Rapid response when you need it most. Triage, containment, evidence collection, and root cause analysis — with a clear timeline of attacker activity.</p>
+        <h3 data-i18n="s3.title">Incident Response</h3>
+        <p data-i18n="s3.desc">Rapid response when you need it most. Triage, containment, evidence collection, and root cause analysis — with a clear timeline of attacker activity.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">&#9881;</div>
-        <h3>Custom Engagements</h3>
-        <p>Every organization has unique risks. We design tailored assessments: penetration testing, Active Directory, cloud, web applications, or any specific combination.</p>
+        <h3 data-i18n="s4.title">Custom Engagements</h3>
+        <p data-i18n="s4.desc">Every organization has unique risks. We design tailored assessments: penetration testing, Active Directory, cloud, web applications, or any specific combination.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">&#127760;</div>
-        <h3>Attack Surface Assessment</h3>
-        <p>We map all your exposed assets — domains, IPs, services, leaked credentials — and deliver a complete picture of what the outside world can see about you.</p>
+        <h3 data-i18n="s5.title">Attack Surface Assessment</h3>
+        <p data-i18n="s5.desc">We map all your exposed assets — domains, IPs, services, leaked credentials — and deliver a complete picture of what the outside world can see about you.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">&#128274;</div>
-        <h3>Threat Intelligence</h3>
-        <p>Dark web monitoring, underground forums, and threat feeds to detect if your organization is being mentioned, sold, or prepared as a target.</p>
+        <h3 data-i18n="s6.title">Threat Intelligence</h3>
+        <p data-i18n="s6.desc">Dark web monitoring, underground forums, and threat feeds to detect if your organization is being mentioned, sold, or prepared as a target.</p>
       </div>
     </div>
   </div>
@@ -559,37 +589,34 @@
 <!-- APPROACH -->
 <section id="approach">
   <div class="section-inner">
-    <div class="section-label">How we work</div>
-    <h2>A structured engagement, every time</h2>
-    <p class="section-desc">
-      Every engagement follows our tested methodology — no shortcuts, no surprises.
-      Four quality gates ensure nothing falls through the cracks.
-    </p>
+    <div class="section-label" data-i18n="approach.label">How we work</div>
+    <h2 data-i18n="approach.h2">A structured engagement, every time</h2>
+    <p class="section-desc" data-i18n="approach.desc">Every engagement follows our tested methodology — no shortcuts, no surprises. Four quality gates ensure nothing falls through the cracks.</p>
     <div class="approach-steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3>Scoping &amp; Authorization</h3>
-        <p>We define the target environment, rules of engagement, and success criteria before a single packet is sent.</p>
+        <h3 data-i18n="a1.title">Scoping &amp; Authorization</h3>
+        <p data-i18n="a1.desc">We define the target environment, rules of engagement, and success criteria before a single packet is sent.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3>Reconnaissance</h3>
-        <p>Passive and active enumeration to map your attack surface — assets, services, technologies, and exposure.</p>
+        <h3 data-i18n="a2.title">Reconnaissance</h3>
+        <p data-i18n="a2.desc">Passive and active enumeration to map your attack surface — assets, services, technologies, and exposure.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Testing</h3>
-        <p>Manual exploitation following OWASP, PTES, and MITRE ATT&amp;CK. Every finding is confirmed — no scanner noise.</p>
+        <h3 data-i18n="a3.title">Testing</h3>
+        <p data-i18n="a3.desc">Manual exploitation following OWASP, PTES, and MITRE ATT&amp;CK. Every finding is confirmed — no scanner noise.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h3>Reporting</h3>
-        <p>Technical report plus executive summary. Each finding includes reproduction steps, business impact, and remediation guidance.</p>
+        <h3 data-i18n="a4.title">Reporting</h3>
+        <p data-i18n="a4.desc">Technical report plus executive summary. Each finding includes reproduction steps, business impact, and remediation guidance.</p>
       </div>
       <div class="step">
         <div class="step-num">05</div>
-        <h3>Retest</h3>
-        <p>After you remediate, we retest Critical and High findings at no charge within 60 days and issue a delta report.</p>
+        <h3 data-i18n="a5.title">Retest</h3>
+        <p data-i18n="a5.desc">After you remediate, we retest Critical and High findings at no charge within 60 days and issue a delta report.</p>
       </div>
     </div>
   </div>
@@ -598,25 +625,25 @@
 <!-- WHY -->
 <section id="why">
   <div class="section-inner">
-    <div class="section-label">Why rmsecurity</div>
-    <h2>What sets us apart</h2>
-    <p class="section-desc">A focused practice, not a factory. Your engagement gets senior expertise — not junior analysts running scanners.</p>
+    <div class="section-label" data-i18n="why.label">Why rmsecurity</div>
+    <h2 data-i18n="why.h2">What sets us apart</h2>
+    <p class="section-desc" data-i18n="why.desc">A focused practice, not a factory. Your engagement gets senior expertise — not junior analysts running scanners.</p>
     <div class="why-grid">
       <div class="why-item">
-        <h3>Manual testing, not scanner output</h3>
-        <p>Automated tools find known CVEs. Manual testing finds the logic flaws, chained vulnerabilities, and business risks that scanners miss.</p>
+        <h3 data-i18n="w1.title">Manual testing, not scanner output</h3>
+        <p data-i18n="w1.desc">Automated tools find known CVEs. Manual testing finds the logic flaws, chained vulnerabilities, and business risks that scanners miss.</p>
       </div>
       <div class="why-item">
-        <h3>Business-context findings</h3>
-        <p>Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.</p>
+        <h3 data-i18n="w2.title">Business-context findings</h3>
+        <p data-i18n="w2.desc">Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.</p>
       </div>
       <div class="why-item">
-        <h3>Evidence you can trust</h3>
-        <p>SHA-256 verified evidence with full chain of custody. Every claim in our reports is backed by documented, reproducible proof.</p>
+        <h3 data-i18n="w3.title">Evidence you can trust</h3>
+        <p data-i18n="w3.desc">SHA-256 verified evidence with full chain of custody. Every claim in our reports is backed by documented, reproducible proof.</p>
       </div>
       <div class="why-item">
-        <h3>Remediation partnership</h3>
-        <p>We don't disappear after delivery. We answer questions during your remediation window and retest critical findings at no added cost.</p>
+        <h3 data-i18n="w4.title">Remediation partnership</h3>
+        <p data-i18n="w4.desc">We don't disappear after delivery. We answer questions during your remediation window and retest critical findings at no added cost.</p>
       </div>
     </div>
   </div>
@@ -625,50 +652,50 @@
 <!-- DELIVERABLES -->
 <section id="deliverables">
   <div class="section-inner">
-    <div class="section-label">What you receive</div>
-    <h2>Every engagement includes</h2>
-    <p class="section-desc">Professional, complete deliverables — ready to share with your board, auditors, or technical teams.</p>
+    <div class="section-label" data-i18n="del.label">What you receive</div>
+    <h2 data-i18n="del.h2">Every engagement includes</h2>
+    <p class="section-desc" data-i18n="del.desc">Professional, complete deliverables — ready to share with your board, auditors, or technical teams.</p>
     <div class="deliverables-list">
       <div class="deliverable">
         <div class="icon">&#128196;</div>
         <div>
-          <h4>Technical Report</h4>
-          <p>Full findings with reproduction steps, evidence, CVSS scores, and MITRE ATT&amp;CK mapping.</p>
+          <h4 data-i18n="d1.title">Technical Report</h4>
+          <p data-i18n="d1.desc">Full findings with reproduction steps, evidence, CVSS scores, and MITRE ATT&amp;CK mapping.</p>
         </div>
       </div>
       <div class="deliverable">
         <div class="icon">&#128202;</div>
         <div>
-          <h4>Executive Summary</h4>
-          <p>Risk overview and prioritized recommendations for leadership — no technical background required.</p>
+          <h4 data-i18n="d2.title">Executive Summary</h4>
+          <p data-i18n="d2.desc">Risk overview and prioritized recommendations for leadership — no technical background required.</p>
         </div>
       </div>
       <div class="deliverable">
         <div class="icon">&#128203;</div>
         <div>
-          <h4>Remediation Tracker</h4>
-          <p>Excel workbook with every finding, owner assignment fields, due dates, and status tracking.</p>
+          <h4 data-i18n="d3.title">Remediation Tracker</h4>
+          <p data-i18n="d3.desc">Excel workbook with every finding, owner assignment fields, due dates, and status tracking.</p>
         </div>
       </div>
       <div class="deliverable">
         <div class="icon">&#128274;</div>
         <div>
-          <h4>Evidence Archive</h4>
-          <p>All supporting evidence with SHA-256 manifest — encrypted, ready for your records or compliance requirements.</p>
+          <h4 data-i18n="d4.title">Evidence Archive</h4>
+          <p data-i18n="d4.desc">All supporting evidence with SHA-256 manifest — encrypted, ready for your records or compliance requirements.</p>
         </div>
       </div>
       <div class="deliverable">
         <div class="icon">&#128260;</div>
         <div>
-          <h4>Complimentary Retest</h4>
-          <p>Retest of Critical and High findings within 60 days, with a delta report confirming resolution.</p>
+          <h4 data-i18n="d5.title">Complimentary Retest</h4>
+          <p data-i18n="d5.desc">Retest of Critical and High findings within 60 days, with a delta report confirming resolution.</p>
         </div>
       </div>
       <div class="deliverable">
         <div class="icon">&#128222;</div>
         <div>
-          <h4>Report Walkthrough</h4>
-          <p>Debrief call with your technical team to walk through findings and answer remediation questions.</p>
+          <h4 data-i18n="d6.title">Report Walkthrough</h4>
+          <p data-i18n="d6.desc">Debrief call with your technical team to walk through findings and answer remediation questions.</p>
         </div>
       </div>
     </div>
@@ -677,17 +704,186 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Ready to find out what attackers can see?</h2>
-  <p>Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.</p>
-  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-cta">Schedule a call &rarr;</a>
+  <h2 data-i18n="cta.h2">Ready to find out what attackers can see?</h2>
+  <p data-i18n="cta.p">Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.</p>
+  <a href="mailto:rodrigo.moses@gmail.com" class="btn btn-cta" data-i18n="cta.btn">Schedule a call &rarr;</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 rmsecurity &mdash; All rights reserved &mdash;
+  <p>&copy; 2025 rmsecurity &mdash; <span data-i18n="footer.rights">All rights reserved</span> &mdash;
      <a href="mailto:rodrigo.moses@gmail.com">rodrigo.moses@gmail.com</a>
   </p>
 </footer>
+
+<script>
+  const i18n = {
+    en: {
+      "nav.services": "Services",
+      "nav.approach": "Approach",
+      "nav.deliverables": "Deliverables",
+      "nav.contact": "Contact",
+      "hero.h1a": "Find your vulnerabilities",
+      "hero.before": "before",
+      "hero.attackers": "attackers",
+      "hero.do": "do.",
+      "hero.sub": "Live security monitoring, OSINT intelligence, incident response, and custom-built engagements — real protection for organizations that can't afford to be the next headline.",
+      "hero.cta1": "Talk to an expert",
+      "hero.cta2": "Our services",
+      "trust.1": "Live 24/7 monitoring",
+      "trust.2": "OSINT & threat intelligence",
+      "trust.3": "Incident response",
+      "trust.4": "100% custom engagements",
+      "services.label": "Services",
+      "services.h2": "Real security, not just reports",
+      "services.desc": "Every service is built to detect real threats, respond fast, and adapt to your organization — no generic solutions.",
+      "s1.title": "Live Security Monitoring",
+      "s1.desc": "Continuous real-time surveillance of your infrastructure. We detect anomalous behavior, unauthorized access, and active threats before they cause damage.",
+      "s2.title": "OSINT for Organizations",
+      "s2.desc": "Open-source intelligence gathering on your company, employees, suppliers, and digital assets — everything an attacker can see before they strike.",
+      "s3.title": "Incident Response",
+      "s3.desc": "Rapid response when you need it most. Triage, containment, evidence collection, and root cause analysis — with a clear timeline of attacker activity.",
+      "s4.title": "Custom Engagements",
+      "s4.desc": "Every organization has unique risks. We design tailored assessments: penetration testing, Active Directory, cloud, web applications, or any specific combination.",
+      "s5.title": "Attack Surface Assessment",
+      "s5.desc": "We map all your exposed assets — domains, IPs, services, leaked credentials — and deliver a complete picture of what the outside world can see about you.",
+      "s6.title": "Threat Intelligence",
+      "s6.desc": "Dark web monitoring, underground forums, and threat feeds to detect if your organization is being mentioned, sold, or prepared as a target.",
+      "approach.label": "How we work",
+      "approach.h2": "A structured engagement, every time",
+      "approach.desc": "Every engagement follows our tested methodology — no shortcuts, no surprises. Four quality gates ensure nothing falls through the cracks.",
+      "a1.title": "Scoping & Authorization",
+      "a1.desc": "We define the target environment, rules of engagement, and success criteria before a single packet is sent.",
+      "a2.title": "Reconnaissance",
+      "a2.desc": "Passive and active enumeration to map your attack surface — assets, services, technologies, and exposure.",
+      "a3.title": "Testing",
+      "a3.desc": "Manual exploitation following OWASP, PTES, and MITRE ATT&CK. Every finding is confirmed — no scanner noise.",
+      "a4.title": "Reporting",
+      "a4.desc": "Technical report plus executive summary. Each finding includes reproduction steps, business impact, and remediation guidance.",
+      "a5.title": "Retest",
+      "a5.desc": "After you remediate, we retest Critical and High findings at no charge within 60 days and issue a delta report.",
+      "why.label": "Why rmsecurity",
+      "why.h2": "What sets us apart",
+      "why.desc": "A focused practice, not a factory. Your engagement gets senior expertise — not junior analysts running scanners.",
+      "w1.title": "Manual testing, not scanner output",
+      "w1.desc": "Automated tools find known CVEs. Manual testing finds the logic flaws, chained vulnerabilities, and business risks that scanners miss.",
+      "w2.title": "Business-context findings",
+      "w2.desc": "Every finding is framed in terms of actual business impact — not just a CVSS score. Your leadership can understand the risk without reading technical details.",
+      "w3.title": "Evidence you can trust",
+      "w3.desc": "SHA-256 verified evidence with full chain of custody. Every claim in our reports is backed by documented, reproducible proof.",
+      "w4.title": "Remediation partnership",
+      "w4.desc": "We don't disappear after delivery. We answer questions during your remediation window and retest critical findings at no added cost.",
+      "del.label": "What you receive",
+      "del.h2": "Every engagement includes",
+      "del.desc": "Professional, complete deliverables — ready to share with your board, auditors, or technical teams.",
+      "d1.title": "Technical Report",
+      "d1.desc": "Full findings with reproduction steps, evidence, CVSS scores, and MITRE ATT&CK mapping.",
+      "d2.title": "Executive Summary",
+      "d2.desc": "Risk overview and prioritized recommendations for leadership — no technical background required.",
+      "d3.title": "Remediation Tracker",
+      "d3.desc": "Excel workbook with every finding, owner assignment fields, due dates, and status tracking.",
+      "d4.title": "Evidence Archive",
+      "d4.desc": "All supporting evidence with SHA-256 manifest — encrypted, ready for your records or compliance requirements.",
+      "d5.title": "Complimentary Retest",
+      "d5.desc": "Retest of Critical and High findings within 60 days, with a delta report confirming resolution.",
+      "d6.title": "Report Walkthrough",
+      "d6.desc": "Debrief call with your technical team to walk through findings and answer remediation questions.",
+      "cta.h2": "Ready to find out what attackers can see?",
+      "cta.p": "Schedule a 30-minute scoping call. No commitment — just a clear picture of what a test would look like for your environment.",
+      "cta.btn": "Schedule a call →",
+      "footer.rights": "All rights reserved"
+    },
+    es: {
+      "nav.services": "Servicios",
+      "nav.approach": "Metodología",
+      "nav.deliverables": "Entregables",
+      "nav.contact": "Contacto",
+      "hero.h1a": "Encontrá tus vulnerabilidades",
+      "hero.before": "antes",
+      "hero.attackers": "que los",
+      "hero.do": "atacantes.",
+      "hero.sub": "Monitoreo de seguridad en vivo, inteligencia OSINT, respuesta a incidentes y proyectos a medida — protección real para organizaciones que no pueden permitirse ser la próxima víctima.",
+      "hero.cta1": "Hablar con un experto",
+      "hero.cta2": "Ver servicios",
+      "trust.1": "Monitoreo 24/7 en vivo",
+      "trust.2": "OSINT e inteligencia de amenazas",
+      "trust.3": "Respuesta a incidentes",
+      "trust.4": "Proyectos 100% personalizados",
+      "services.label": "Servicios",
+      "services.h2": "Seguridad real, no solo reportes",
+      "services.desc": "Cada servicio está diseñado para detectar amenazas reales, responder a tiempo y adaptarse a tu organización — sin soluciones genéricas.",
+      "s1.title": "Monitoreo de Seguridad en Vivo",
+      "s1.desc": "Vigilancia continua en tiempo real de tu infraestructura. Detectamos comportamientos anómalos, accesos no autorizados y amenazas activas antes de que causen daño.",
+      "s2.title": "OSINT para Organizaciones",
+      "s2.desc": "Recolección de inteligencia de fuentes abiertas sobre tu empresa, empleados, proveedores y activos digitales — todo lo que un atacante puede ver antes de actuar.",
+      "s3.title": "Respuesta a Incidentes",
+      "s3.desc": "Respuesta rápida cuando más lo necesitás. Triage, contención, recolección de evidencia y análisis de causa raíz — con una línea de tiempo clara de la actividad del atacante.",
+      "s4.title": "Proyectos Personalizados",
+      "s4.desc": "Cada organización tiene riesgos únicos. Diseñamos evaluaciones a medida: penetration testing, Active Directory, cloud, aplicaciones web o combinaciones específicas.",
+      "s5.title": "Evaluación de Superficie de Ataque",
+      "s5.desc": "Mapeamos todos tus activos expuestos — dominios, IPs, servicios, credenciales filtradas — y te entregamos una visión completa de lo que el mundo exterior puede ver.",
+      "s6.title": "Inteligencia de Amenazas",
+      "s6.desc": "Monitoreo de la dark web, foros clandestinos y feeds de amenazas para detectar si tu organización está siendo mencionada, vendida o preparada como objetivo.",
+      "approach.label": "Cómo trabajamos",
+      "approach.h2": "Un proceso estructurado, siempre",
+      "approach.desc": "Cada engagement sigue nuestra metodología probada — sin atajos, sin sorpresas. Cuatro quality gates aseguran que nada quede sin atención.",
+      "a1.title": "Alcance y Autorización",
+      "a1.desc": "Definimos el entorno objetivo, las reglas de engagement y los criterios de éxito antes de enviar un solo paquete.",
+      "a2.title": "Reconocimiento",
+      "a2.desc": "Enumeración pasiva y activa para mapear tu superficie de ataque — activos, servicios, tecnologías y exposición.",
+      "a3.title": "Testing",
+      "a3.desc": "Explotación manual siguiendo OWASP, PTES y MITRE ATT&CK. Cada hallazgo es confirmado — sin ruido de scanners.",
+      "a4.title": "Reporte",
+      "a4.desc": "Reporte técnico más resumen ejecutivo. Cada hallazgo incluye pasos de reproducción, impacto de negocio y guía de remediación.",
+      "a5.title": "Re-test",
+      "a5.desc": "Luego de que remediás, re-testeamos los hallazgos Críticos y Altos sin cargo dentro de los 60 días y emitimos un delta report.",
+      "why.label": "Por qué rmsecurity",
+      "why.h2": "Lo que nos diferencia",
+      "why.desc": "Una práctica enfocada, no una fábrica. Tu engagement recibe experiencia senior — no analistas junior corriendo scanners.",
+      "w1.title": "Testing manual, no salida de scanners",
+      "w1.desc": "Las herramientas automatizadas encuentran CVEs conocidos. El testing manual encuentra las fallas lógicas, vulnerabilidades encadenadas y riesgos de negocio que los scanners no ven.",
+      "w2.title": "Hallazgos con contexto de negocio",
+      "w2.desc": "Cada hallazgo se presenta en términos de impacto real de negocio — no solo un score CVSS. Tu liderazgo puede entender el riesgo sin leer los detalles técnicos.",
+      "w3.title": "Evidencia en la que podés confiar",
+      "w3.desc": "Evidencia verificada con SHA-256 y cadena de custodia completa. Cada afirmación en nuestros reportes está respaldada por prueba documentada y reproducible.",
+      "w4.title": "Socio en la remediación",
+      "w4.desc": "No desaparecemos después de la entrega. Respondemos preguntas durante la ventana de remediación y re-testeamos hallazgos críticos sin costo adicional.",
+      "del.label": "Qué recibís",
+      "del.h2": "Cada engagement incluye",
+      "del.desc": "Entregables profesionales y completos — listos para compartir con tu directorio, auditores o equipos técnicos.",
+      "d1.title": "Reporte Técnico",
+      "d1.desc": "Hallazgos completos con pasos de reproducción, evidencia, scores CVSS y mapeo MITRE ATT&CK.",
+      "d2.title": "Resumen Ejecutivo",
+      "d2.desc": "Visión general del riesgo y recomendaciones priorizadas para el liderazgo — sin conocimiento técnico requerido.",
+      "d3.title": "Tracker de Remediación",
+      "d3.desc": "Workbook Excel con cada hallazgo, campos de asignación de responsable, fechas límite y seguimiento de estado.",
+      "d4.title": "Archivo de Evidencia",
+      "d4.desc": "Toda la evidencia de soporte con manifiesto SHA-256 — cifrada, lista para tus registros o requerimientos de compliance.",
+      "d5.title": "Re-test sin Cargo",
+      "d5.desc": "Re-test de hallazgos Críticos y Altos dentro de 60 días, con un delta report confirmando la resolución.",
+      "d6.title": "Walkthrough del Reporte",
+      "d6.desc": "Llamada de debrief con tu equipo técnico para revisar los hallazgos y responder preguntas de remediación.",
+      "cta.h2": "¿Listo para saber qué pueden ver los atacantes?",
+      "cta.p": "Agendá una llamada de scoping de 30 minutos. Sin compromiso — solo una visión clara de cómo sería un test para tu entorno.",
+      "cta.btn": "Agendar una llamada →",
+      "footer.rights": "Todos los derechos reservados"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n[lang][key]) el.textContent = i18n[lang][key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
 
 </body>
 </html>
